@@ -3,12 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site</title>
+    <title>Site do Primo 🎁</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bem-vindo ao meu site!</h1>
-    <p><a href="sobre.html">Sobre</a></p>
-    <p><a href="paginas/contato.html">Contato</a></p>
-    <p><a href="paginas/produtos.html">Produtos</a></p>
+    <!-- ÁUDIO (tenta tocar assim que carregar a página) -->
+    <audio id="intro-audio" src="audio/festa.mp3" preload="auto"></audio>
+
+    <!-- TELA DE ENTRADA -->
+    <div id="intro-overlay" class="overlay">
+        <div class="overlay-content">
+            <h2 class="overlay-title">Oiee, surpresa 🎉</h2>
+            <p class="overlay-subtitle">
+                Tem gatinho girando, confete e musiquinha só pra você 🎉
+            </p>
+
+            <div class="cat-wrapper">
+                <img src="img/gatito.gif" alt="Gatinho fofo" class="cat-gif" id="catGif">
+            </div>
+
+            <!-- Botão só leva para outra página -->
+            <a href="pagina2.html" class="start-btn">
+                Começar 🎁
+            </a>
+
+            <p class="hint">
+                Se algo der errado, recarrega a página que tudo começa de novo 🐱
+            </p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO NORMAL DO SITE (fica por baixo do overlay) -->
+    <main>
+        <h1>Bem-vindo ao meu site!</h1>
+        <p><a href="sobre.html">Sobre</a></p>
+        <p><a href="paginas/contato.html">Contato</a></p>
+        <p><a href="paginas/produtos.html">Produtos</a></p>
+    </main>
+
+    <!-- Biblioteca de confete -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // roda toda vez que a página termina de carregar (F5, recarregar)
+        window.addEventListener("load", function () {
+            const audio  = document.getElementById("intro-audio");
+            const catGif = document.getElementById("catGif");
+
+            // 🐱 Gatinho gira/cresce assim que carrega
+            if (catGif) {
+                catGif.classList.remove("animate"); // garante reset
+                void catGif.offsetWidth;           // truque pra reiniciar animação
+                catGif.classList.add("animate");
+            }
+
+            // 🎉 Confetti assim que carrega
+            function startConfetti(durationMs = 2600) {
+                if (!window.confetti) return;
+
+                const end = Date.now() + durationMs;
+                (function frame() {
+                    confetti({
+                        particleCount: 6,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0 }
+                    });
+                    confetti({
+                        particleCount: 6,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1 }
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                })();
+            }
+
+            startConfetti();
+
+            // 🎵 ÁUDIO: 0s → 1s, pula pra 3.5s, vai até 22.5s
+            if (!audio) return;
+
+            const SEGMENT1_END   = 1.0;   // 0.0s até 1.0s
+            const SEGMENT2_START = 3.5;   // pula pra 3.5s
+            const SEGMENT2_END   = 22.5;  // para em 22.5s
+
+            audio.currentTime = 0;
+
+            function onTimeUpdate() {
+                const t = audio.currentTime;
+
+                // passou de 1s e ainda não chegou em 3.5s → pula pra 3.5
+                if (t >= SEGMENT1_END && t < SEGMENT2_START) {
+                    audio.currentTime = SEGMENT2_START;
+                    return;
+                }
+
+                // passou do limite final → pausa e trava ali
+                if (t >= SEGMENT2_END) {
+                    audio.pause();
+                    audio.currentTime = SEGMENT2_END;
+                    audio.removeEventListener("timeupdate", onTimeUpdate);
+                }
+            }
+
+            audio.addEventListener("timeupdate", onTimeUpdate);
+
+            // tenta tocar automaticamente
+            audio.play().catch((err) => {
+                console.log("O navegador bloqueou o autoplay de áudio:", err);
+                // Infelizmente alguns navegadores exigem clique do usuário pra liberar som :(
+            });
+        });
+    </script>
 </body>
 </html>
