@@ -26,7 +26,7 @@
                 <img src="img/gatito.gif" alt="Gatinho fofo" class="cat-gif" id="catGif">
             </div>
 
-            <!-- AGORA É UM BOTÃO, NÃO UM LINK PRA OUTRA PÁGINA -->
+            <!-- Botão que abre o livrinho -->
             <button type="button" class="start-btn" id="startBook">
                 Começar 🎁
             </button>
@@ -35,7 +35,7 @@
 
     <!-- LIVRINHO (fica escondido até clicar em Começar) -->
     <div id="book-section" class="book-container" style="display: none;">
-        <h1 class="book-title">9 formas de dizer <span>eu te amo</span></h1>
+        <h1 class="book-title">6 formas de dizer <span>eu te amo</span></h1>
 
         <div class="book">
             <!-- Página 1 - Chopper -->
@@ -313,9 +313,8 @@
         </div>
 
         <div class="book-controls">
-            <button class="nav-btn" id="prevPage">&larr; Página anterior</button>
-            <span id="pageIndicator">1 / 9</span>
-            <button class="nav-btn" id="nextPage">Próxima página &rarr;</button>
+            <button class="nav-btn" id="prevPage">&larr;</button>
+            <button class="nav-btn" id="nextPage"> &rarr;</button>
         </div>
 
         <!-- Botão pra voltar pro gatinho -->
@@ -339,14 +338,14 @@
         const bookSec   = document.getElementById("book-section");
         const backIntro = document.getElementById("backToIntro");
 
-        // 🐱 Gatinho gira/cresce
+        // 🐱 Gatinho gira/cresce ao carregar
         if (catGif) {
             catGif.classList.remove("animate");
             void catGif.offsetWidth;
             catGif.classList.add("animate");
         }
 
-        // 🎉 Confetti
+        // 🎉 Confetti ao carregar
         function startConfetti(durationMs = 2600) {
             if (!window.confetti) return;
             const end = Date.now() + durationMs;
@@ -358,64 +357,71 @@
         }
         startConfetti();
 
-        // 🎵 Áudio com cortes
+        // 🎵 ÁUDIO – começa na primeira interação (clique/toque)
         if (audio) {
-            const SEGMENT1_END   = 1.0;
-            const SEGMENT2_START = 3.5;
-            const SEGMENT2_END   = 22.5;
+            const SEGMENT1_END   = 1.0;   // até 1s
+            const SEGMENT2_START = 3.5;   // pula pra 3.5s
+            const SEGMENT2_END   = 22.5;  // para em 22.5s
 
-            audio.currentTime = 0;
+            function configurarSegmentos() {
+                audio.currentTime = 0;
 
-            function onTimeUpdate() {
-                const t = audio.currentTime;
-                if (t >= SEGMENT1_END && t < SEGMENT2_START) {
-                    audio.currentTime = SEGMENT2_START;
-                    return;
+                function onTimeUpdate() {
+                    const t = audio.currentTime;
+
+                    if (t >= SEGMENT1_END && t < SEGMENT2_START) {
+                        audio.currentTime = SEGMENT2_START;
+                        return;
+                    }
+
+                    if (t >= SEGMENT2_END) {
+                        audio.pause();
+                        audio.currentTime = SEGMENT2_END;
+                        audio.removeEventListener("timeupdate", onTimeUpdate);
+                    }
                 }
-                if (t >= SEGMENT2_END) {
-                    audio.pause();
-                    audio.currentTime = SEGMENT2_END;
-                    audio.removeEventListener("timeupdate", onTimeUpdate);
-                }
+
+                audio.addEventListener("timeupdate", onTimeUpdate);
             }
 
-            audio.addEventListener("timeupdate", onTimeUpdate);
-
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Autoplay bloqueado. Aguardando interação...", error);
-                    const unlockAudio = () => {
-                        audio.play().catch(() => {});
-                        document.removeEventListener('click', unlockAudio);
-                        document.removeEventListener('touchstart', unlockAudio);
-                    };
-                    document.addEventListener('click', unlockAudio);
-                    document.addEventListener('touchstart', unlockAudio);
+            function iniciarAudio() {
+                configurarSegmentos();
+                audio.play().catch((err) => {
+                    console.log("Erro ao tocar áudio:", err);
                 });
             }
+
+            // primeira interação em QUALQUER lugar da tela
+            function handleFirstInteraction() {
+                iniciarAudio();
+                document.removeEventListener("click", handleFirstInteraction);
+                document.removeEventListener("touchstart", handleFirstInteraction);
+            }
+
+            document.addEventListener("click", handleFirstInteraction, { once: true });
+            document.addEventListener("touchstart", handleFirstInteraction, { once: true });
         }
 
         // 👉 Ir do gatinho pro livrinho
         if (startBook && overlay && bookSec) {
-            startBook.addEventListener('click', () => {
-                overlay.style.display = 'none';
-                bookSec.style.display = 'block';
-                document.body.classList.add('love-page'); // usa fundo marrom do fofinhi.css
+            startBook.addEventListener("click", () => {
+                overlay.style.display = "none";
+                bookSec.style.display = "block";
+                document.body.classList.add("love-page");
             });
         }
 
         // 👉 Voltar do livrinho pro gatinho
         if (backIntro && overlay && bookSec) {
-            backIntro.addEventListener('click', () => {
-                bookSec.style.display = 'none';
-                overlay.style.display = 'block';
-                document.body.classList.remove('love-page');
+            backIntro.addEventListener("click", () => {
+                bookSec.style.display = "none";
+                overlay.style.display = "block";
+                document.body.classList.remove("love-page");
 
                 if (catGif) {
-                    catGif.classList.remove('animate');
+                    catGif.classList.remove("animate");
                     void catGif.offsetWidth;
-                    catGif.classList.add('animate');
+                    catGif.classList.add("animate");
                 }
             });
         }
