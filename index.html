@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz formatura :) </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fofinhi.css">
 </head>
 <body>
-    <!-- ÁUDIO (tenta tocar automaticamente ao carregar) -->
+    <!-- ÁUDIO -->
     <audio id="intro-audio" src="audio/festa.mp3" preload="auto"></audio>
 
-    <!-- TELA DE ENTRADA -->
+    <!-- TELA DE ENTRADA (GATINHO) -->
     <div id="intro-overlay" class="overlay">
         <div class="overlay-content">
-            <h2 class="overlay-title">Oiee, surpresa 🎉  <br>Clica em qualquer lugar da tela pra ativar o áudio<br>  </h2>
+            <h2 class="overlay-title">
+                Oiee, surpresa 🎉<br>
+                Clica em qualquer lugar da tela pra ativar o áudio 💿
+            </h2>
             <p class="overlay-subtitle">
                 Tem gatinho girando, confete e musiquinha só pra você
             </p>
@@ -22,96 +26,441 @@
                 <img src="img/gatito.gif" alt="Gatinho fofo" class="cat-gif" id="catGif">
             </div>
 
-            <!-- Botão só navega pra outra página -->
-            <a href="paginas/fofinhi.html" class="start-btn">
+            <!-- AGORA É UM BOTÃO, NÃO UM LINK PRA OUTRA PÁGINA -->
+            <button type="button" class="start-btn" id="startBook">
                 Começar 🎁
-            </a>
+            </button>
         </div>
     </div>
 
-    <!-- CONTEÚDO NORMAL DO SITE -->
-    <main>
-        <h1>Bem-vindo ao meu site!</h1>
-        <p><a href="sobre.html">Sobre</a></p>
-        <p><a href="paginas/contato.html">Contato</a></p>
-        <p><a href="paginas/produtos.html">Produtos</a></p>
-    </main>
+    <!-- LIVRINHO (fica escondido até clicar em Começar) -->
+    <div id="book-section" class="book-container" style="display: none;">
+        <h1 class="book-title">9 formas de dizer <span>eu te amo</span></h1>
 
-    <!-- Biblioteca de confete -->
+        <div class="book">
+            <!-- Página 1 - Chopper -->
+            <section class="page active" data-index="0">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/1.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Um cuti cuti 💕</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/chopper.jpg" alt="Chopper">
+                            </div>
+                            <div class="polaroid-caption">Chopper</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu te 
+                            <span class="love love-chopper">amo</span> 
+                            assim como o Chopper ama 
+                            <span class="love love-chopper">algodão doce</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 2 - Zoro -->
+            <section class="page" data-index="1">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/2.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Primeiras vezes na vovó 💕</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/zoro.jpg" alt="Zoro">
+                            </div>
+                            <div class="polaroid-caption">Zoro</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu te 
+                            <span class="love love-zoro">amo</span> 
+                            como o Zoro ama 
+                            <span class="love love-zoro">beber</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 3 - Franky -->
+            <section class="page" data-index="2">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/3.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Já gostava de piscina 🏊</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/franky.jpg" alt="Franky">
+                            </div>
+                            <div class="polaroid-caption">Franky</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu te 
+                            <span class="love love-franky">amo</span> 
+                            como o Franky ama 
+                            <span class="love love-franky">navios</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 4 - Luffy -->
+            <section class="page" data-index="3">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/4.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Nós dois 💕</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/luffy.jpg" alt="Luffy">
+                            </div>
+                            <div class="polaroid-caption">Luffy</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu 
+                            <span class="love love-luffy">amo</span> 
+                            <strong>você</strong> 
+                            como o Luffy ama 
+                            <span class="love love-luffy">comer</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 5 - Sanji -->
+            <section class="page" data-index="4">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/5.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Fofuchu divertidinho 🥺</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/sanji.jpg" alt="Sanji">
+                            </div>
+                            <div class="polaroid-caption">Sanji</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu te 
+                            <span class="love love-sanji">amo</span> 
+                            como o Sanji ama 
+                            <span class="love love-sanji">cozinhar</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 6 - Usopp -->
+            <section class="page" data-index="5">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/6.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Nós dois 💕</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/usopp.jpg" alt="Usopp">
+                            </div>
+                            <div class="polaroid-caption">Usopp</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu te 
+                            <span class="love love-usopp">amo</span> 
+                            como o Usopp ama 
+                            <span class="love love-usopp">fugir</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 7 - Nami -->
+            <section class="page" data-index="6">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/7.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Nós dois 💕</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/nami.jpg" alt="Nami">
+                            </div>
+                            <div class="polaroid-caption">Nami</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu 
+                            <span class="love love-nami">amo</span> 
+                            <strong>você</strong> 
+                            como a Nami ama 
+                            <span class="love love-nami">dinheiro</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 8 - Brook -->
+            <section class="page" data-index="7">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/8.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Dois nerds nerdolando 🕹️👾🎮</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/brook.jpg" alt="Brook">
+                            </div>
+                            <div class="polaroid-caption">Brook</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu te 
+                            <span class="love love-brook">amo</span> 
+                            como o Brook ama 
+                            <span class="love love-brook">calcinhas</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Página 9 - Jinbe -->
+            <section class="page" data-index="8">
+                <div class="page-inner">
+                    <div class="photo-column">
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/9.jpg" alt="Nós dois">
+                            </div>
+                            <div class="polaroid-caption">Mandrakes🔥😎</div>
+                        </div>
+
+                        <div class="polaroid">
+                            <div class="polaroid-photo">
+                                <img src="img/jinbe.jpg" alt="Jinbe">
+                            </div>
+                            <div class="polaroid-caption">Jinbe</div>
+                        </div>
+                    </div>
+
+                    <div class="text-column">
+                        <p class="love-phrase">
+                            Eu 
+                            <span class="love love-jinbe">amo</span> 
+                            <strong>você</strong> 
+                            como o Jinbe ama 
+                            <span class="love love-jinbe">karatê</span>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="book-controls">
+            <button class="nav-btn" id="prevPage">&larr; Página anterior</button>
+            <span id="pageIndicator">1 / 9</span>
+            <button class="nav-btn" id="nextPage">Próxima página &rarr;</button>
+        </div>
+
+        <!-- Botão pra voltar pro gatinho -->
+        <p class="back-link">
+            <button type="button" class="nav-btn" id="backToIntro">
+                Voltar para o começo 
+            </button>
+        </p>
+    </div>
+
+    <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-  <script>
+    <!-- SCRIPT: gatinho + áudio + confetti + troca de telas -->
+    <script>
     window.addEventListener("load", function () {
-        const audio  = document.getElementById("intro-audio");
-        const catGif = document.getElementById("catGif");
+        const audio     = document.getElementById("intro-audio");
+        const catGif    = document.getElementById("catGif");
+        const startBook = document.getElementById("startBook");
+        const overlay   = document.getElementById("intro-overlay");
+        const bookSec   = document.getElementById("book-section");
+        const backIntro = document.getElementById("backToIntro");
 
         // 🐱 Gatinho gira/cresce
         if (catGif) {
-            catGif.classList.remove("animate"); 
-            void catGif.offsetWidth;           
-            catGif.classList.add("animate");   
+            catGif.classList.remove("animate");
+            void catGif.offsetWidth;
+            catGif.classList.add("animate");
         }
 
-        // 🎉 Confetti (mantive igual)
+        // 🎉 Confetti
         function startConfetti(durationMs = 2600) {
             if (!window.confetti) return;
             const end = Date.now() + durationMs;
             (function frame() {
                 confetti({ particleCount: 6, angle: 60, spread: 55, origin: { x: 0 } });
                 confetti({ particleCount: 6, angle: 120, spread: 55, origin: { x: 1 } });
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
+                if (Date.now() < end) requestAnimationFrame(frame);
             })();
         }
         startConfetti();
 
-        // 🎵 LÓGICA DE ÁUDIO INTELIGENTE
-        if (!audio) return;
+        // 🎵 Áudio com cortes
+        if (audio) {
+            const SEGMENT1_END   = 1.0;
+            const SEGMENT2_START = 3.5;
+            const SEGMENT2_END   = 22.5;
 
-        const SEGMENT1_END   = 1.0;  
-        const SEGMENT2_START = 3.5;  
-        const SEGMENT2_END   = 22.5; 
+            audio.currentTime = 0;
 
-        audio.currentTime = 0;
-
-        // Função que gerencia o pulo do tempo
-        function onTimeUpdate() {
-            const t = audio.currentTime;
-            if (t >= SEGMENT1_END && t < SEGMENT2_START) {
-                audio.currentTime = SEGMENT2_START;
-                return;
+            function onTimeUpdate() {
+                const t = audio.currentTime;
+                if (t >= SEGMENT1_END && t < SEGMENT2_START) {
+                    audio.currentTime = SEGMENT2_START;
+                    return;
+                }
+                if (t >= SEGMENT2_END) {
+                    audio.pause();
+                    audio.currentTime = SEGMENT2_END;
+                    audio.removeEventListener("timeupdate", onTimeUpdate);
+                }
             }
-            if (t >= SEGMENT2_END) {
-                audio.pause();
-                audio.currentTime = SEGMENT2_END;
-                audio.removeEventListener("timeupdate", onTimeUpdate);
+
+            audio.addEventListener("timeupdate", onTimeUpdate);
+
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Autoplay bloqueado. Aguardando interação...", error);
+                    const unlockAudio = () => {
+                        audio.play().catch(() => {});
+                        document.removeEventListener('click', unlockAudio);
+                        document.removeEventListener('touchstart', unlockAudio);
+                    };
+                    document.addEventListener('click', unlockAudio);
+                    document.addEventListener('touchstart', unlockAudio);
+                });
             }
         }
-        audio.addEventListener("timeupdate", onTimeUpdate);
 
-        // --- AQUI ESTÁ A MÁGICA ---
-        // Tenta tocar automaticamente
-        const playPromise = audio.play();
+        // 👉 Ir do gatinho pro livrinho
+        if (startBook && overlay && bookSec) {
+            startBook.addEventListener('click', () => {
+                overlay.style.display = 'none';
+                bookSec.style.display = 'block';
+                document.body.classList.add('love-page'); // usa fundo marrom do fofinhi.css
+            });
+        }
 
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Autoplay bloqueado. Aguardando interação...");
-                
-                // Cria um "ouvinte" que espera o primeiro clique na tela inteira
-                const unlockAudio = () => {
-                    audio.play();
-                    // Remove o ouvinte para não tentar tocar de novo a cada clique
-                    document.removeEventListener('click', unlockAudio);
-                    document.removeEventListener('touchstart', unlockAudio); // Para celular
-                };
+        // 👉 Voltar do livrinho pro gatinho
+        if (backIntro && overlay && bookSec) {
+            backIntro.addEventListener('click', () => {
+                bookSec.style.display = 'none';
+                overlay.style.display = 'block';
+                document.body.classList.remove('love-page');
 
-                // Adiciona o ouvinte no documento todo
-                document.addEventListener('click', unlockAudio);
-                document.addEventListener('touchstart', unlockAudio);
+                if (catGif) {
+                    catGif.classList.remove('animate');
+                    void catGif.offsetWidth;
+                    catGif.classList.add('animate');
+                }
             });
         }
     });
-</script>
+    </script>
+
+    <!-- SCRIPT: navegação do livrinho -->
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+        const indicator = document.getElementById('pageIndicator');
+
+        let currentPage = 0;
+
+        function showPage(index) {
+            pages.forEach((page, i) => {
+                page.classList.toggle('active', i === index);
+            });
+            if (indicator) {
+                indicator.textContent = (index + 1) + ' / ' + pages.length;
+            }
+        }
+
+        if (prevBtn && nextBtn && pages.length > 0) {
+            prevBtn.addEventListener('click', () => {
+                currentPage = (currentPage - 1 + pages.length) % pages.length;
+                showPage(currentPage);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentPage = (currentPage + 1) % pages.length;
+                showPage(currentPage);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+
+            showPage(currentPage);
+        }
+    </script>
 </body>
 </html>
